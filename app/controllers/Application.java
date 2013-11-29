@@ -25,9 +25,9 @@ public class Application extends Controller {
                                             tweetForm.get().positifPattern,
                                             tweetForm.get().negatifPattern);
 
-        List<Tweet> positifTweets = new ArrayList<>();
-        List<Tweet> negatifTweets = new ArrayList<>();
-        List<Tweet> neutralTweets = new ArrayList<>();
+        List<Tweet> positifTweets = new ArrayList<Tweet>();
+        List<Tweet> negatifTweets = new ArrayList<Tweet>();
+        List<Tweet> neutralTweets = new ArrayList<Tweet>();
         tw.divideTweet(positifTweets,negatifTweets,neutralTweets);
         return ok(analyze.render(tw.getPositifKeyword(), tw.getNegatifKeyword(), positifTweets, negatifTweets, neutralTweets, tweetForm.get().algorithm));
     }
