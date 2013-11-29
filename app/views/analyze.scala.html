@@ -1,0 +1,66 @@
+@(positifPattern: Array[String], negatifPattern:Array[String], positifTweet:List[Tweet], negatifTweet:List[Tweet], neutralTweet:List[Tweet], algorithm:String)
+@main("Twitter Sentiment") {
+<div class="container">
+    <div class="col-md-6">
+        <b>Keywords Positif:</b><br>
+        <em>
+            @positifPattern.map { name =>
+            @name;
+            }
+        </em>
+    </div>
+    <div class="col-md-6">
+        <b>Keywords Negatif:</b><br>
+        <em>
+            @negatifPattern.map { name =>
+            @name;
+            }
+        </em>
+    </div>
+</div>
+<div class="container">
+    <div class= "col-md-12">
+        <p><b>Algorithm choosen:</b> @algorithm</p>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-4">
+        <h1>Positif Sentimen</h1>
+        <p class="help-block">
+            apabila keyword positif > keyword negatif
+        </p>
+        @positifTweet.map { tweet =>
+        <p>@tweet.getContent()</p>
+        }
+    </div>
+    <div class="col-md-4">
+        <h1>Negatif Sentimen</h1>
+        <p class="help-block">
+            apabila keyword negatif > keyword positif
+        </p>
+        @negatifTweet.map { tweet =>
+        <p>@tweet.getContent()</p>
+        }
+    </div>
+    <div class="col-md-4">
+        <h1>Neutral Sentimen</h1>
+        <p class="help-block">
+            apabila keyword negatif == keyword positif
+        </p>
+        @neutralTweet.map { tweet =>
+        <p>@tweet.getContent()</p>
+        }
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+}
