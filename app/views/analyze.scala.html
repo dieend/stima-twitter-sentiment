@@ -1,7 +1,13 @@
-@(positifPattern: Array[String], negatifPattern:Array[String], positifTweet:List[Tweet], negatifTweet:List[Tweet], neutralTweet:List[Tweet], algorithm:String)
+@(tweetKeyword:String, positifPattern: Array[String], negatifPattern:Array[String], positifTweet:List[MyTweet], negatifTweet:List[MyTweet], neutralTweet:List[MyTweet], algorithm:String)
 @main("Twitter Sentiment") {
 <div class="container">
-    <div class="col-md-6">
+    <div class="col-md-4">
+        <b>Keywords Pencarian:</b><br>
+        <em>
+            @tweetKeyword
+        </em>
+    </div>
+    <div class="col-md-4">
         <b>Keywords Positif:</b><br>
         <em>
             @positifPattern.map { name =>
@@ -9,7 +15,7 @@
             }
         </em>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <b>Keywords Negatif:</b><br>
         <em>
             @negatifPattern.map { name =>
@@ -30,7 +36,7 @@
             apabila keyword positif > keyword negatif
         </p>
         @positifTweet.map { tweet =>
-        <p>@tweet.getContent()</p>
+        <p><a href=@(tweet.getTweetURL())>@tweet.getTweet()</a></p>
         }
     </div>
     <div class="col-md-4">
@@ -39,7 +45,7 @@
             apabila keyword negatif > keyword positif
         </p>
         @negatifTweet.map { tweet =>
-        <p>@tweet.getContent()</p>
+        <p><a href=@(tweet.getTweetURL())>@tweet.getTweet()</a></p>
         }
     </div>
     <div class="col-md-4">
@@ -48,7 +54,7 @@
             apabila keyword negatif == keyword positif
         </p>
         @neutralTweet.map { tweet =>
-        <p>@tweet.getContent()</p>
+        <p><a href=@(tweet.getTweetURL())>@tweet.getTweet()</a></p>
         }
     </div>
 </div>

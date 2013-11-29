@@ -1,16 +1,16 @@
 package controllers;
 
 import helpers.Forms;
-import models.Tweet;
+import models.MyTweet;
 import models.TweetAnalyzer;
 import models.algorithm.Algorithm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import views.html.*;
 
 public class Application extends Controller {
 
@@ -21,14 +21,18 @@ public class Application extends Controller {
     public static Result analyzeTweets(){
         Form<Forms.Tweet> tweetForm = Form.form(Forms.Tweet.class).bindFromRequest();
         Algorithm.S().setAlgorithm(tweetForm.get().algorithm);
-        TweetAnalyzer tw = new TweetAnalyzer(tweetForm.get().tweetKeyword,
-                                            tweetForm.get().positifPattern,
-                                            tweetForm.get().negatifPattern);
+        try {
+            TweetAnalyzer tw = new TweetAnalyzer(tweetForm.get().tweetKeyword,
+                                                tweetForm.get().positifPattern,
+                                                tweetForm.get().negatifPattern);
 
-        List<Tweet> positifTweets = new ArrayList<Tweet>();
-        List<Tweet> negatifTweets = new ArrayList<Tweet>();
-        List<Tweet> neutralTweets = new ArrayList<Tweet>();
-        tw.divideTweet(positifTweets,negatifTweets,neutralTweets);
-        return ok(analyze.render(tw.getPositifKeyword(), tw.getNegatifKeyword(), positifTweets, negatifTweets, neutralTweets, tweetForm.get().algorithm));
+            List<MyTweet> positifTweets = new ArrayList<MyTweet>();
+            List<MyTweet> negatifTweets = new ArrayList<MyTweet>();
+            List<MyTweet> neutralTweets = new ArrayList<MyTweet>();
+            tw.divideTweet(positifTweets,negatifTweets,neutralTweets);
+            return ok(analyze.render(tw.getKeyword(),tw.getPositifKeyword(), tw.getNegatifKeyword(), positifTweets, negatifTweets, neutralTweets, tweetForm.get().algorithm));
+        } catch (Exception e) {
+            return Controller.badRequest();
+        }
     }
 }

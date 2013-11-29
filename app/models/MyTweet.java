@@ -1,6 +1,7 @@
 package models;
 
 import models.algorithm.Algorithm;
+import twitter4j.Status;
 
 import java.util.Random;
 
@@ -11,16 +12,31 @@ import java.util.Random;
  * Time: 4:51 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Tweet {
+public class MyTweet {
     private static Random r = new Random();
     private static String[] sample = {"this is a sample tweet negatif","this is a sample tweet positif", "this is a sample tweet positif negatif"};
-    String content = null;
+    private Status content = null;
+
     //TODO this should be fixed and integrate with okihita
-    public Tweet() {
-        content = sample[r.nextInt(3)];
+    public MyTweet(Status status) {
+        content = status;
     }
     public String getContent(){
-        return content;
+        return content.getText();
+    }
+    public String getTweetURL() {
+        StringBuffer address = new StringBuffer();
+        address.append("http://twitter.com/#!/");
+        address.append(content.getUser().getScreenName());
+        address.append("/status/");
+        address.append(content.getId());
+        return address.toString();
+    }
+    public String getUser() {
+        return content.getUser().getScreenName();
+    }
+    public String getTweet() {
+        return "@" + getUser() + ": " + getContent();
     }
     public int countExistance(String[] word){
         int ret = 0;

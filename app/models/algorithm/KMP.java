@@ -36,21 +36,6 @@ public class KMP implements IAlgorithm {
             b[i] = j;
         }
         // print pettern, partial match table and index
-        System.out
-                .println("printing pattern, partial match table, and its index");
-        System.out.print(" ");
-        for (char c : ptrn) {
-            System.out.print(c + "   ");
-        }
-        System.out.println(" ");
-        for (int tmp : b) {
-            System.out.print(tmp + "   ");
-        }
-        System.out.print("\n ");
-        for (int l = 0; l < ptrn.length; l++) {
-            System.out.print(l + "   ");
-        }
-        System.out.println();
         return b;
     }
 
@@ -73,11 +58,6 @@ public class KMP implements IAlgorithm {
         int ret = 0;
         while (i < txtLen) {
             while (j >= 0 && text[i] != ptrn[j]) {
-                System.out.println("Mismatch happened, between text char "
-                        + text[i] + " and pattern char " + ptrn[j]
-                        + ", \nhence jumping the value of " + "j from " + j
-                        + " to " + b[j] + " at text index i at " + i
-                        + " based on partial match table");
                 j = b[j];
             }
             i++;
@@ -86,9 +66,6 @@ public class KMP implements IAlgorithm {
             // a match is found
             if (j == ptrnLen) {
                 ret++;
-                System.out.println("FOUND SUBSTRING AT i " + i + " and index:"
-                        + (i - ptrnLen));
-                System.out.println("Setting j from " + j + " to " + b[j]);
                 j = b[j];
             }
         }

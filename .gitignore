@@ -2,6 +2,7 @@ logs
 project/project
 project/target
 target
+app/models/Config.java
 tmp
 .history
 dist

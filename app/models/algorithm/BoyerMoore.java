@@ -51,7 +51,6 @@ public class BoyerMoore implements IAlgorithm{
         BoyerMoore bm = new BoyerMoore();
         List<Integer> matches = bm.match("ana", "bananas");
         for (Integer integer : matches) System.out.println("Match at: " + integer);
-        System.out.println((matches.equals(Arrays.asList(1, 3)) ? "OK" : "Failed"));
     }
 
     @Override
