@@ -37,8 +37,8 @@ public class TwitterRetriever {
             consumer_key_secret = System.getenv("CONSUMER_KEY_SECRET");
             access_token_secret= System.getenv("ACCESS_TOKEN_SECRET");
         }
-        AccessToken accessToken = new AccessToken(Config.ACCESS_TOKEN, Config.ACCESS_TOKEN_SECRET);
-        twitter.setOAuthConsumer(Config.CONSUMER_KEY, Config.CONSUMER_KEY_SECRET);
+        AccessToken accessToken = new AccessToken(access_token, access_token_secret);
+        twitter.setOAuthConsumer(consumer_key, consumer_key_secret);
         twitter.setOAuthAccessToken(accessToken);
     }
     public List<Status> searchQuery(String keyword) throws TwitterException{
